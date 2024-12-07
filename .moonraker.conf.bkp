@@ -34,17 +34,53 @@ type = web
 repo = mainsail-crew/mainsail
 path = ~/mainsail
 
-[update_manager KlipperScreen]
+[update_manager happy-hare]
+type = git_repo
+path = ~/Happy-Hare
+origin = https://github.com/moggieuk/Happy-Hare.git
+primary_branch = main
+install_script = install.sh
+managed_services = klipper
+
+[mmu_server]
+enable_file_preprocessor = False
+enable_toolchange_next_pos = True
+
+[update_manager KlipperScreen-happy_hare]
 type = git_repo
 path = ~/KlipperScreen
-origin = https://github.com/jordanruthe/KlipperScreen.git
+origin = https://github.com/moggieuk/KlipperScreen-Happy-Hare-Edition.git
 env = ~/.KlipperScreen-env/bin/python
 requirements = scripts/KlipperScreen-requirements.txt
 install_script = scripts/KlipperScreen-install.sh
+managed_services = KlipperScreen-happy_hare
 
-[update_manager z_calibration]
+[update_manager crowsnest]
 type = git_repo
-path = ~/klipper_z_calibration
-origin = https://github.com/protoloft/klipper_z_calibration.git
+path = ~/crowsnest
+origin = https://github.com/mainsail-crew/crowsnest.git
+managed_services = crowsnest
+install_script = tools/pkglist.sh
+
+[update_manager Klippain-ShakeTune]
+type = git_repo
+path = ~/klippain_shaketune
+channel = beta
+origin = https://github.com/Frix-x/klippain-shaketune.git
+primary_branch = main
+managed_services = klipper
 install_script = install.sh
+
+[update_manager cartographer]
+type = git_repo
+path = ~/cartographer-klipper
+channel = dev
+origin = https://github.com/Cartographer3D/cartographer-klipper.git
+env = ~/klippy-env/bin/python
+requirements = requirements.txt
+install_script = install.sh
+is_system_service = False
+managed_services = klipper
+info_tags = 
+	desc=Cartographer Probe
 
